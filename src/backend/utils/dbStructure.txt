@@ -1,0 +1,19 @@
+keydata:
+--> health
+--> level
+
+Dungeon Monsters:
+--> level (1,2, .... 9, 10)
+--> difficulty (easy slime, medium skelly, hard Minotaur)
+--> question
+--> answer number
+--> option 1
+--> option 2
+--> option 3
+--> option 4
+
+dialogue 
+--> character
+--> part
+--> content
+
