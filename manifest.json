@@ -1,0 +1,25 @@
+{
+    "name": "Wiki Dungeon",
+    "version": "1.0",
+    "description": "A extension that turns wiki articles into a game like format",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "dist/background.js",
+        "type": "module"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "cookies",
+        "webRequest",
+        "tabs"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "action": {
+        "default_popup": "src/frontend/index.html",
+        "default_icon": "src/frontend/img/icon.png"
+    }
+
+}
