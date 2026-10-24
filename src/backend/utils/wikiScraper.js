@@ -1,6 +1,50 @@
 export async function wikiScraper(){
+    /**
+     * [ 
+     *      {
+     *          name: section 1 header, content:[
+     *              {name: sub-section 1 header, content: [
+     *              
+     *              ]}
+     *          ]
+     *      },
+     *      {
+     *          name: section 2 header, content:[
+     *              "paragraph 1",
+     *              "paragraph 2"
+     *          ]
+     *      }
+     * ]
+     * 
+     * @param {*} sections List of sections with content
+     */
     function structureSections(sections){
-
+        let output = [];
+        // for each section
+        for(let i = 0; i < sections.length; i++){
+            // get the name of the header
+            const headerName = sections[i].getAttribute("aria-labelledby") || "overview"; 
+            // get all subsections
+            let subSections = sections[i].querySelectorAll(":scope > section");
+            // if there are more than 0 subsections
+            if(subSections && subSections.length != 0){
+                // get the structured output of the subSections
+                let subSectionOutput = structureSections(subSections);
+                // push the record into the output list
+                output.push({name:headerName, content:subSectionOutput});
+                continue;
+            }
+            // get all of the paragraph elements
+            let paragraphs = [...sections[i].querySelectorAll(":scope > p")];
+            for(let x = 0; x < paragraphs.length; x++){
+                // turn all the elements into their textContent
+                paragraphs[x] = paragraphs[x].textContent;
+            }
+            // push the record into the output list
+            output.push({name: headerName, content:paragraphs});
+        }
+        // return the output list
+        return output;
     }
 
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });

@@ -9,5 +9,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 // for all attended purposes, startGame is the main function
 function startGame(){
-    wikiScraper();
+    let structuredData = wikiScraper();
+    console.log(structuredData);
 }   
