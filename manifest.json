@@ -9,10 +9,7 @@
     },
     "permissions": [
         "activeTab",
-        "scripting",
-        "cookies",
-        "webRequest",
-        "tabs"
+        "scripting"
     ],
     "host_permissions": [
         "<all_urls>"
